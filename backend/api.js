@@ -61,6 +61,21 @@ app.delete("/deleteuser/:id",(req,res)=>{
         }
     })
 })
+
+app.put("/updateuser/:id",(req,res)=>{
+    const userID = req.params.id
+    const {name,Email,address,phone} = req.body
+    const updateQuery= "UPDATE `userinfo` SET `name`=?,`Email`=?,`address`=?,`phone`=? WHERE id =?"
+    connection.execute(updateQuery,[name,Email,address,phone,userID],(err,data)=>{
+        if(err){
+            res.json(err)
+        }else if(data.affectedRows === 0 ){
+            res.json("user not found")
+        }else{
+            res.json("user updated succesfully")
+        }
+    })
+})
 app.listen(5000,()=>{
     console.log("server is runign now at http://localhost:5000");
 })
