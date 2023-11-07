@@ -7,6 +7,7 @@ async function getData() {
     });
 }
 
+
 function showData(e) {
   e.map((item) => {
     document.getElementById("tbody").innerHTML += `
@@ -23,6 +24,9 @@ function showData(e) {
 					</tr>`;
   });
 }
+
+
+
 const getFormData =  () => {
   data = {
     name: document.getElementById("name").value,
@@ -33,6 +37,8 @@ const getFormData =  () => {
 
   return data
 };
+
+
 
 
 document.getElementById("adduser").onclick = async function addUesr(e) {
@@ -51,6 +57,8 @@ document.getElementById("adduser").onclick = async function addUesr(e) {
   window.location.reload();
 };
 
+
+
 async function deleteUser(id) {
   await fetch(`http://localhost:5000/deleteuser/${id}`, {
     method: "DELETE",
@@ -60,11 +68,15 @@ async function deleteUser(id) {
   });
 }
 
+
+
 var finalID = null
 const ID = function (i){
      finalID = i
      console.log(finalID)
 }
+
+
 
 const updateBtn = document.getElementById('saveData')
 
@@ -87,4 +99,5 @@ updateBtn.onclick = function updateProduct(e){
 
       window.location.reload()
 }
+
 getData();
