@@ -1,3 +1,4 @@
+//getting data from API
 async function getData() {
   await fetch("http://localhost:5000")
     .then((res) => res.json())
@@ -7,9 +8,12 @@ async function getData() {
     });
 }
 
-
+//showing data in html page
+let arr =[]
 function showData(e) {
   e.map((item) => {
+
+    arr.push({id:item.id,name:item.name,email:item.Email,address:item.address,phone:item.phone})
     document.getElementById("tbody").innerHTML += `
         <tr>
 					
@@ -18,15 +22,16 @@ function showData(e) {
 						<td id="caddress">${item.address}</td>
 						<td id = "cphone">${item.phone}</td>
 						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"  data-productID=${item.id} onclick=ID(${item.id})><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#editEmployeeModal" class="edit" data-toggle="modal" data-name=${item.name} data-email=${item.Email} data-address=${item.address} data-phone=${item.phone}  data-productID=${item.id} onclick=ID(${item.id})><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal" data-productID=${item.id} onclick=deleteUser(${item.id})><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>`;
-  });
+        }
+        
+        );
 }
 
-
-
+//getting data from form
 const getFormData =  () => {
   data = {
     name: document.getElementById("name").value,
@@ -40,7 +45,7 @@ const getFormData =  () => {
 
 
 
-
+// adding new user
 document.getElementById("adduser").onclick = async function addUesr(e) {
   e.preventDefault();
   getFormData();
@@ -58,7 +63,7 @@ document.getElementById("adduser").onclick = async function addUesr(e) {
 };
 
 
-
+//delete user
 async function deleteUser(id) {
   await fetch(`http://localhost:5000/deleteuser/${id}`, {
     method: "DELETE",
@@ -69,21 +74,29 @@ async function deleteUser(id) {
 }
 
 
-
+//get specific id properties
 var finalID = null
 const ID = function (i){
-     finalID = i
-     console.log(finalID)
+  finalID = i
+  console.log(finalID)
+  arr.map((item)=>{
+    if(finalID === +item.id){
+      document.getElementById("sname").value = item.name
+      document.getElementById("semail").value = item.email
+      document.getElementById("saddress").value = item.address
+      document.getElementById("sphone").value = item.phone
+    }
+  })
 }
 
 
-
+//update values 
 const updateBtn = document.getElementById('saveData')
 
 updateBtn.onclick = function updateProduct(e){
     e.preventDefault()
     let data = {
-        name: document.getElementById("sname").value,
+        name: document.getElementById("sname").value ,
         Email: document.getElementById("semail").value,
         address: document.getElementById("saddress").value,
         phone: document.getElementById("sphone").value,

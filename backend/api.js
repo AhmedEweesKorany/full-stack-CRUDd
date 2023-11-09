@@ -72,10 +72,12 @@ app.put("/updateuser/:id",(req,res)=>{
         }else if(data.affectedRows === 0 ){
             res.json("user not found")
         }else{
-            res.json("user updated succesfully")
+            res.json("user updated succesflly")
         }
     })
 })
+
+
 app.listen(5000,()=>{
     console.log("server is runign now at http://localhost:5000");
 })
