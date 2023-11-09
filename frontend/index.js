@@ -22,8 +22,8 @@ function showData(e) {
 						<td id="caddress">${item.address}</td>
 						<td id = "cphone">${item.phone}</td>
 						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal" data-name=${item.name} data-email=${item.Email} data-address=${item.address} data-phone=${item.phone}  data-productID=${item.id} onclick=ID(${item.id})><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal" data-productID=${item.id} onclick=deleteUser(${item.id})><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="#editEmployeeModal" class="edit" data-toggle="modal" onclick=ID(${item.id})><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"  onclick=deleteUser(${item.id})><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>`;
         }
