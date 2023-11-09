@@ -73,6 +73,22 @@ async function deleteUser(id) {
   });
 }
 
+//delete all users 
+
+const deletaAll = document.getElementById("deleteAll")
+
+deletaAll.onclick = async(e)=>{
+  e.preventDefault()
+  console.log(true);
+  await fetch("http://localhost:5000/deleteAll",{
+    method:"DELETE",
+    headers:{
+      "Content-Type" : "application/json"
+    }
+  }).then(()=>{
+    window.location.reload()
+  })
+}
 
 //get specific id properties
 var finalID = null
@@ -112,5 +128,7 @@ updateBtn.onclick = function updateProduct(e){
 
       window.location.reload()
 }
+
+
 
 getData();

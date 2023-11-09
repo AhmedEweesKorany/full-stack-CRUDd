@@ -62,6 +62,20 @@ app.delete("/deleteuser/:id",(req,res)=>{
     })
 })
 
+//delete all
+
+app.delete("/deleteAll",(req,res)=>{
+    const deletaAll = "DELETE FROM `userinfo`"
+
+    connection.execute(deletaAll,(err,data)=>{
+        if(err){
+            res.end(err)
+        }else{
+            res.end("all data has been deleted")
+        }
+    })
+})
+
 app.put("/updateuser/:id",(req,res)=>{
     const userID = req.params.id
     const {name,Email,address,phone} = req.body
